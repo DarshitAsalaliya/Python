@@ -1,0 +1,33 @@
+#Single inheritance
+
+class Marks:#Base Class
+    "This is a marks class that takes care of the marks data"
+
+    def __init__(self):
+        self.m1 = int(input("Enter marks in Physics: "))
+        self.m2 = int(input("Enter marks in Chemistry: "))
+        self.m3 = int(input("Enter marks in Maths: "))
+
+    def displayMarks(self):
+        print("Marks in Physics: ", self.m1)
+        print("Marks in Chemistry: ", self.m2)
+        print("Marks in Maths: ", self.m3)
+
+class Result(Marks):  #Derived class 
+    "This is a result class that takes care of the result"
+
+    def __init__(self):
+        Marks.__init__(self)
+        self.total = self.m1 + self.m2 + self.m3
+        self.percentage = self.total/3
+
+    def displayResult(self):
+        print("Total Marks: ", self.total)
+        print("Percentage: ", self.percentage)
+
+#Creating object of the derived class
+r = Result( )   
+#Accessing the function of base class using 
+#the object of derived class            
+r.displayMarks( )               
+r.displayResult( )  
