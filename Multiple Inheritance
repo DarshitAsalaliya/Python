@@ -1,0 +1,59 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Dec 29 13:31:24 2021
+
+@author: vajok
+"""
+
+
+# Illustration of multiple inheritance
+
+class Student: # Class-1                  
+    "This is a student class that takes care of the student details"
+
+    def __init__(self):
+        self.name = input("Enter student name: ")
+        self.rollno = input("Enter student roll number: ")
+
+    def displayStudent(self):
+        print("Student Name: ", self.name)
+        print("Student Roll Number: ",
+        self.rollno)
+
+class Marks: # Class-2
+    "This is a marks class that takes  care of the marks data"
+
+    def __init__(self):
+        self.m1 = int(input("Enter marks in Physics: "))
+        self.m2 = int(input("Enter marks in Chemistry: "))
+        self.m3 = int(input("Enter marks in Maths: "))
+
+    def displayMarks(self):
+        print("Marks in Physics: ", self.m1)
+        print("Marks in Chemistry: ", self.m2)
+        print("Marks in Maths: ", self.m3)
+
+#(multiple inheritance)
+class Result(Student, Marks):   #Derived class 
+
+    "This is a result class that takes care of the result"
+
+    def __init__(self):
+        Student.__init__(self)
+        Marks.__init__(self)
+        self.total = self.m1 + self.m2 + self.m3
+        self.percentage = self.total/3
+
+    def displayResult(self):
+        print("Result of ", self.name, " - ", 
+        self.rollno)
+        print("Total Marks: ", self.total)
+        print("Percentage: ", self.percentage)
+
+#Creating object of the derived class     
+r = Result( ) 
+#Accessing the functions of parent classes using 
+#the object of child class                  
+r.displayStudent( )                               
+r.displayMarks( )               
+r.displayResult( )
