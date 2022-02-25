@@ -1,0 +1,66 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+#read csv
+csvdata = pd.read_csv("Automobile_data.csv")
+
+#print csv data
+#print(pd.DataFrame(csvdata).to_string())
+#print(csvdata.to_string())
+
+#unique value
+columnuniquedata = csvdata["make"].unique()
+
+#make x y data
+xdata = []
+ydata = []
+
+#display unique value
+for i in range(len(columnuniquedata)): 
+    xdata.append(columnuniquedata[i])
+    horsepowercolumn = csvdata["horsepower"].loc[csvdata["make"]==columnuniquedata[i]].loc[csvdata["horsepower"]!='?']
+    ydata.append(horsepowercolumn.astype(str).astype(float).mean())
+    #print(columnuniquedata[i])
+    
+#remove null/black value
+#horsepowercolumn = csvdata["horsepower"].loc[csvdata["make"]=='audi'].loc[csvdata["horsepower"]!='?']
+#print(horsepowercolumn.astype(str).astype(float).mean())
+
+#cleaning Empty Cell
+#print(csvdata["price"].dropna())
+
+#data correlations
+#print(csvdata.corr())
+
+#print chart
+#csvdata.plot(kind = 'scatter', x = 'make', y = 'price')
+#plt.show()
+
+#display chart
+xpoints = np.array(xdata)
+ypoints = np.array(ydata)
+
+plt.title("Sports Watch Data")
+plt.xlabel("Make")
+plt.ylabel("horsepower")
+
+plt.bar(xpoints, ypoints)
+plt.show()
+
+#histogram
+#x = np.random.normal(170, 10, 250)
+#plt.hist(x)
+#plt.show() 
+
+
+#pie 
+#y = np.array([35, 25, 25, 15])
+#mylabels = ["Apples", "Bananas", "Cherries", "Dates"]
+#plt.pie(y, labels = mylabels, startangle = 90)
+#plt.show() 
+
+#reshape
+#arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])
+#newarr = arr.reshape(4, 3)
+#print(newarr)
